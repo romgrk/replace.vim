@@ -1,0 +1,65 @@
+*replace-operator.txt*	For Vim version 7.3	Last change: 2015 August
+
+
+		  REPLACE OPERATOR    by Rom Grk
+
+
+Help on R operator					*roperator-help*
+
+1. Intro		|roperator-intro|
+2. Suggested mappings	|roperator-map|
+2. Operations   	|roperator-op|
+
+==============================================================================
+1. Intro  					        *roperator-intro*
+
+Replace operator is an additionnal operator, like |c|, |d| or |p|. It operates
+on a range of text, and accepts a register as input. Basically, it replaces
+the text in {motion} or {Visual} with the content of register [x], or 
+'clipboard' if none provided.
+
+The deleted text is sent to black hole register by default. You can set the
+default register by setting: >
+
+    let g:replace_register = '_'
+
+When `g:replace_register` is set to `'|'`, the text is exchanged between 
+the two register. 
+
+==============================================================================
+2. Suggested mappings	                                 *roperator-map*
+
+NOTE: R operator has no default mapping. Map it yourself. Dude.
+
+Example: >
+    
+    nmap R <Plug>ReplaceOperator
+    vmap R <Plug>ReplaceOperator
+<
+    For consistency with |yy|, |cc|, etc. I like to add the following. >
+
+    nmap RR 0R$
+<
+The X operator is also provided for convenience. It does the same operation
+as calling the R with `g:replace_register` set to `'|'`. >
+
+    nmap X <Plug>ExchangeOperator
+    vmap X <Plug>ExchangeOperator
+
+==============================================================================
+2. Operations	                                  *R*     *roperator-op*
+~
+							*n_R_operator*
+["x]R{motion}		Delete {motion} text into register
+                        `g:replace_register` and replace it with register 
+                        [x].
+							*v_R_operator*
+{Visual}["x]R		Delete the highlighted text into register
+                        `g:replace_register` and replace it with 
+                        register [x].
+							*n_X_operator* *X*
+["x]X{motion}		Delete {motion} text [into register x] but replace
+                        it with register content before.
+
+
+ vim:tw=78:ts=8:ft=help:norl:
