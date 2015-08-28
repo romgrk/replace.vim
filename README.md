@@ -15,19 +15,27 @@ Works as you would expect `c` or `d` to work.
 
   ```
 * [NeoBundle](https://github.com/Shougo/neobundle.vim)
-   `NeoBundle 'romgrk/replace.vim'`
+
+   ```vim
+   NeoBundle 'romgrk/replace.vim'
+   ```
 
 * [Vundle](https://github.com/gmarik/vundle)
-   `Bundle 'romgrk/replace.vim'`
+
+   ```vim
+   Bundle 'romgrk/replace.vim'
+   ```
 
 * Manual
+
   ```sh
   # You should know what to do of you're going manual.
   ```
+
 ## Configuration
 
 ```vim
-let g:replace_register = '_' " Default"
+let g:replace_register = '_' " Default
 ```
 
 The deleted text is placed in register `g:replace_register`.
