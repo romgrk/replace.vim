@@ -1,8 +1,28 @@
 
 # R-Operator
 
-Provides a `R`(replace) operator for vim.
+Provides a `R`(replace) or `s`(substitute) operator for vim.
 Works as you would expect `c` or `d` to work.
+
+Use-case:
+You need to replace some text with the content of a register (most likely the default), while keeping the register content as is. 
+
+Example sequence: (cursor at **|**)
+```
+This is a |sentence (with some brackets in it) over.
+```
+:`ye` => @@ contains `'sentence'`
+
+:`f(`
+```
+This is a sentence (|with some brackets in it) over.
+```
+:`Rib` => @@ still contains `'sentence'`
+```
+This is a sentence (|sentence) over.
+```
+
+The replaced text is sent to blank register by default. This is configurable. (see below or doc)
 
 ## Installation
 
@@ -14,16 +34,17 @@ Works as you would expect `c` or `d` to work.
   git submodule add https://github.com/romgrk/replace.vim
 
   ```
+  
+* [VimPlug](https://github.com/junegunn/vim-plug)
+
+   ```vim
+   Plug 'romgrk/replace.vim'
+   ```
+  
 * [NeoBundle](https://github.com/Shougo/neobundle.vim)
 
    ```vim
    NeoBundle 'romgrk/replace.vim'
-   ```
-
-* [Vundle](https://github.com/gmarik/vundle)
-
-   ```vim
-   Bundle 'romgrk/replace.vim'
    ```
 
 * Manual
@@ -43,6 +64,8 @@ Set it to `'|'` to exchange the value of the register and
 the selected text.
 
 ## Usage
+
+**!** Map the operator in your rc files!
 
 ```vim
 nmap R <Plug>ReplaceOperator
