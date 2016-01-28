@@ -1,8 +1,11 @@
 
 # R-Operator
 
-Provides a `R`(replace) operator for vim.
-Works as you would expect `c` or `d` to work.
+Provides a `R`(replace) operator for vim. The operation replaces the text object or motion
+with the content of the specified or default register.
+
+Works as you would expect `c/change` or `d/delete` to work.
+
 
 ## Installation
 
@@ -56,5 +59,5 @@ Then `Ri(`, `veR`, `yyRR`, etc.
 
 # License
 
-Idk, probably MIT, do what you want. 
+Same as JSON license
 
