@@ -4,15 +4,15 @@
 Provides a replace and an exchange operator for vim.
 The operation replaces the text object or motion with the content of the specified register.
 
-*ReplaceOperator* use-case:
+**ReplaceOperator** use-case:
 You need to replace some text with the content of a register (most likely the
 default), while keeping the register content as is.
 
-*ExchangeOperator* use-case:
+**ExchangeOperator** use-case:
 You need to exchange some content with the content of the register.
 
 
-ReplaceOperator example sequence: (cursor at `|`, `<Plug>ReplaceOperator` mapped to `R`)
+**ReplaceOperator** example sequence: (cursor at `|`, `<Plug>ReplaceOperator` mapped to `R`)
 ```
 This is a |sentence (with some brackets in it) over.
 ```
@@ -26,7 +26,7 @@ The replaced text is sent to the blank register by default.
 This is configurable. (see below or doc)
 
 
-ExchangeOperator example sequence: (cursor at `|`, `<Plug>ExchangeOperator` mapped to `X`)
+**ExchangeOperator** example sequence: (cursor at `|`, `<Plug>ExchangeOperator` mapped to `X`)
 ```
 let value = getPosition(|value, other)
 ```
