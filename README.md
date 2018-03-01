@@ -1,85 +1,75 @@
 
-# R-Operator
+# Replace & Exchange Operator
 
-Provides a `R`(replace) operator for vim. The operation replaces the text object or motion
-with the content of the specified or default register.
+Provides a replace and an exchange operator for vim.
+The operation replaces the text object or motion with the content of the specified register.
 
-Works as you would expect `c/change` or `d/delete` to work.
+*ReplaceOperator* use-case:
+You need to replace some text with the content of a register (most likely the
+default), while keeping the register content as is.
 
-Use-case:
-You need to replace some text with the content of a register (most likely the default), while keeping the register content as is. 
+*ExchangeOperator* use-case:
+You need to exchange some content with the content of the register.
 
-Example sequence: (cursor at **|**)
+
+ReplaceOperator example sequence: (cursor at `|`, `<Plug>ReplaceOperator` mapped to `R`)
 ```
 This is a |sentence (with some brackets in it) over.
 ```
-:`ye` => @@ contains `'sentence'`
-
-:`f(`
-```
-This is a sentence (|with some brackets in it) over.
-```
-:`Rib` => @@ still contains `'sentence'`
+`ye` yank end
+`f(` find (
+`Ri(` replace inside (
 ```
 This is a sentence (|sentence) over.
 ```
+The replaced text is sent to the blank register by default.
+This is configurable. (see below or doc)
 
-The replaced text is sent to blank register by default. This is configurable. (see below or doc)
 
-## Installation
-
-* [Pathogen](https://github.com/tpope/vim-pathogen)
-  ```sh
-  cd ~/.vim/bundle && git clone https://github.com/romgrk/replace.vim
-# or 
-  cd ~/.vim/bundle 
-  git submodule add https://github.com/romgrk/replace.vim
-
-  ```
-  
-* [VimPlug](https://github.com/junegunn/vim-plug)
-
-   ```vim
-   Plug 'romgrk/replace.vim'
-   ```
-  
-* [NeoBundle](https://github.com/Shougo/neobundle.vim)
-
-   ```vim
-   NeoBundle 'romgrk/replace.vim'
-   ```
-
-* Manual
-
-  ```sh
-  # You should know what to do of you're going manual.
-  ```
-
-## Configuration
-
-```vim
-let g:replace_register = '_' " Default
+ExchangeOperator example sequence: (cursor at `|`, `<Plug>ExchangeOperator` mapped to `X`)
+```
+let value = getPosition(|value, other)
+```
+`ye` yank end
+`W` move W
+`Xe` eXchange end
+```
+let value = getPosition(value, other|)
+```
+`yiw` yank inside word
+`Bb` move back to `value`
+`Xe` eXchange end
+```
+let value = getPosition(other|, value)
 ```
 
-The deleted text is placed in register `g:replace_register`.
-Set it to `'|'` to exchange the value of the register and 
-the selected text.
 
 ## Usage
 
-**!** Map the operator in your rc files!
+*No default mappings are provided*
 
 ```vim
 nmap R <Plug>ReplaceOperator
 vmap R <Plug>ReplaceOperator
+" Alternative: s for 'substitute'
+nmap s <Plug>ReplaceOperator
+vmap s <Plug>ReplaceOperator
 
-" This is like calling R with g:replace_register=='|'
 nmap X <Plug>ExchangeOperator
 ```
 
-Then `Ri(`, `veR`, `yyRR`, etc.
+
+## Configuration
+
+```vim
+let g:replace_register = '_' " Default: sends Replaced content to black hole register
+```
+
+The deleted text is placed in register `g:replace_register`.
+Set it to `'|'` to exchange the value of the register and the selected text.
+(In which case, `ReplaceOperator` will act exactly as `ExchangeOperator`)
+
 
 # License
 
 Same as JSON license
-
