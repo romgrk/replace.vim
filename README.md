@@ -34,7 +34,7 @@ let value = getPosition(|value, other)
 `W` move W
 `Xe` eXchange end
 ```
-let value = getPosition(value, other|)
+let value = getPosition(value, value|)
 ```
 `yiw` yank inside word
 `Bb` move back to `value`
